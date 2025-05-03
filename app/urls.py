@@ -27,20 +27,3 @@ urlpatterns = [
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-# WSGI configuration pour le projet Django hébergé sur PythonAnywhere
-import os
-import sys
-
-project_home = '/home/empsbshd/EM_ST2025'
-if project_home not in sys.path:
-    sys.path.insert(0, project_home)
-
-os.chdir(project_home)
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EM_ST2025.settings')
-
-import django
-django.setup()
-from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
