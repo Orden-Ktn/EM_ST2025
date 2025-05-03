@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semaine du Talent 2025</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#4F46E5', secondary: '#EC4899' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="/static/images/favicon/LOGO_EM.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+    <style>
+        .alert-container {
+            position: fixed; /* Position fixe pour rester en haut de la page */
+            margin: auto;
+            top: 20px; /* Marge du haut */
+            left: 50%; /* Centrer horizontalement */
+            transform: translateX(-50%); /* Ajuster le centrage */
+            width: 80%; /* Largeur de l'alerte (ajustez selon vos besoins) */
+            max-width: 500px; /* Largeur maximale */
+            z-index: 1000; /* Assurez-vous qu'il est au-dessus des autres éléments */
+        }
+    
+        .alert {
+            background-color: #e0f7fa; /* Couleur de fond claire */
+            border: 1px solid #b2ebf2; /* Bordure légère */
+            border-radius: 5px; /* Coins arrondis */
+            padding: 20px; /* Espacement intérieur */
+            text-align: center; /* Centrer le texte */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre légère */
+        }
+    
+        .alert-title {
+            color: #00838f; /* Couleur du titre */
+            margin-bottom: 10px; /* Marge sous le titre */
+        }
+    
+        .alert-message {
+            color: #263238; /* Couleur du message */
+            font-size: 16px; /* Taille de la police */
+        }
+        
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gallery-image {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 35px;
+            color: #121212;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    {% if messages %}
+        <div class="alert-container">
+            {% for message in messages %}
+            <div class="alert alert-fill alert-info" role="alert">
+                <h4 class="alert-title">EM Dodji | ST2025</h4>
+                <div class="alert-message"><i class="ion ion-ios-alert"></i> {{ message }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <section id="accueil" class="relative overflow-hidden"
+        style="background-image: url('/static/images/IMG-20240826-WA0021.jpg'); background-size: cover;  background-repeat: no-repeat;">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/40"></div>
+        <div class="container mx-auto px-4 py-20 md:py-32 relative">
+            <div class="w-full md:w-1/2 text-left">
+                <div class="mb-8 flex justify-center md:justify-start">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center">
+                            <h2 class="font-['Pacifico'] text-primary text-3xl"><img src="/static/images/LOGO_EM.jpg"
+                                    alt="" style="border-radius: 50%;"></h2>
+                        </div>
+                        <div class="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center">
+                            <h2 class="font-['Pacifico'] text-primary text-3xl"><img src="/static/images/logo.png"
+                                    alt=""></h2>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="hero-title text-4xl md:text-1xl font-bold text-gray-900 mb-4">Paroisse Sainte Bernadette de
+                    Hêvié Dodji</h5>
+                <h5 class="hero-title text-3xl md:text-1xl font-bold text-gray-900 mb-4">Semaine du Talent 2025</h5>
+                <div class="inline-block text-white px-6 py-2 rounded-full text-lg font-medium mb-6"
+                    style="font-family: cursive; background-color: limegreen;"><i class="ri-calendar-line ri-xl"></i>
+                    Du 24 au 31 Août 2025 <br>
+                    <i class="ri-map-line ri-xl"></i> Chapelle près du Presbytère 
+                </div>
+                <p class="text-lg md:text-xl text-gray-700 mb-8"><strong>Thème : </strong> <em>"Mille et un talents, 
+                    mille et une façons d’évangéliser."</em>
+                    <!-- Révélez votre talent et brillez sur scène lors de notre
+                    événement annuel qui célèbre la créativité et l'expression artistique.</p> -->
+                    <!-- <div class="flex flex-wrap gap-4">
+                    <a href="#description"
+                        class="bg-primary hover:bg-primary/90 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                        Découvrir l'événement
+                    </a>
+                    <a href="#galerie"
+                        class="bg-white border border-gray-300 hover:border-primary text-gray-800 hover:text-primary px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                        Voir la galerie
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section id="description" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">À propos de la Semaine du Talent</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 mb-6">
+                    La Semaine du Talent est un événement paroissial de l'Enfance Missionnaire initié par le Révérend
+                    Père Eric <strong>BOKPE</strong>,
+                    Curé de la paroisse dans le but d'évangéliser par les talents. Créée en 2020, cette manifestation
+                    est devenue un rendez-vous
+                    incontournable pour tous ceux qui souhaitent partager leur passion et leur créativité.
+                </p>
+                <p class="text-lg text-gray-700">
+                    Chaque année, plus de 100 participants de la paroisse membre d'un mouvement d'enfant ou non se
+                    réunissent pour
+                    présenter leurs talents dans diverses disciplines artistiques. L'événement offre une visibilité
+                    exceptionnelle aux talents
+                    émergents et attire plusieurs spectateurs de la paroisse et d'ailleurs.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm text-center" style="background-color: aliceblue;">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-calendar-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">7 jours d'événements</h3>
+                    <p class="text-gray-600">Une semaine complète dédiée à la découverte et à la célébration des talents
+                        dans toute leur diversité.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm text-center" style="background-color: aliceblue;">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-trophy-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">10 catégories de compétition</h3>
+                    <p class="text-gray-600">Des opportunités pour tous les types de talents, de la musique à la danse
+                        en passant par les arts visuels.</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm text-center" style="background-color: aliceblue;">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="ri-group-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Participation ouverte à tous</h3>
+                    <p class="text-gray-600">Que vous soyez amateur ou professionnel, en solo ou en groupe, il y a une
+                        place pour vous.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galerie" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Galerie de l'édition 2024</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Revivez les moments forts de notre dernière édition à travers cette sélection de photos capturant
+                    l'énergie et la créativité des participants.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/IMG-20240826-WA0021.jpg" alt="Performance musicale"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/cuisine1.jpg" alt="Spectacle de danse"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/foot1.jpg" alt="Numéro de magie"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/chant.jpg" alt="Performance artistique"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/th1.jpg" alt="Spectacle d'humour"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/th3.jpg" alt="Cérémonie de remise des prix"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/danse1.jpg" alt="Performance artistique"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/danse2.jpg" alt="Spectacle d'humour"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-sm cursor-pointer gallery-image">
+                    <img src="/static/images/art1.jpg" alt="Cérémonie de remise des prix"
+                        class="w-full h-64 object-cover object-top">
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <section id="categories" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Catégories de compétition</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Découvrez les dix catégories dans lesquelles vous pouvez concourir lors de la Semaine du Talent
+                    2025.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- A Capella -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-mic-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">A Capella</h3>
+                        <p class="text-gray-600 mb-4">
+                            Chantez sans instruments et laissez briller votre voix à travers des harmonies uniques et
+                            créatives.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Danse -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-run-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Danse</h3>
+                        <p class="text-gray-600 mb-4">
+                            De la danse classique au hip-hop, exprimez-vous par le mouvement et l’énergie scénique.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Théâtre -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-drama-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Théâtre</h3>
+                        <p class="text-gray-600 mb-4">
+                            Mettez en scène vos talents d’acteur dans des pièces originales, drames ou comédies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dessin -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-brush-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Dessin</h3>
+                        <p class="text-gray-600 mb-4">
+                            Montrez vos œuvres graphiques : portraits, caricatures, paysages ou créations abstraites.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Question Pour un Champion -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-question-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Question Pour un Champion</h3>
+                        <p class="text-gray-600 mb-4">
+                            Testez votre culture générale dans un quiz palpitant digne des plus grandes émissions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Art Oratoire -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-megaphone-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Art Oratoire</h3>
+                        <p class="text-gray-600 mb-4">
+                            Maîtrisez l’éloquence à travers des discours puissants, slams ou débats passionnés.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Epelle-Moi! -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-spell-check-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Epelle-Moi!</h3>
+                        <p class="text-gray-600 mb-4">
+                            Maîtrisez l’orthographe dans ce concours de diction et de lettres à haute tension.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Miss & Mister -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-user-star-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Miss & Mister</h3>
+                        <p class="text-gray-600 mb-4">
+                            Élégance, prestance et personnalité : défendez votre style sur scène avec charisme.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Couture -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-scissors-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Couture</h3>
+                        <p class="text-gray-600 mb-4">
+                            Présentez vos créations textiles : mode, accessoires ou tenues traditionnelles faites main.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Cuisine -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="h-48 bg-primary/10 flex items-center justify-center">
+                        <i class="ri-restaurant-line ri-4x text-primary"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-3">Cuisine</h3>
+                        <p class="text-gray-600 mb-4">
+                            Éveillez les papilles avec vos recettes originales, sucrées ou salées, d’ici ou d’ailleurs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="inscription" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Inscrivez-vous maintenant</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-8"></div>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+                    Les inscriptions pour l'édition 2025 sont ouvertes ! Choisissez votre mode de participation et
+                    rejoignez l'aventure.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto">
+                <div class="flex-1 bg-gray-50 rounded-lg shadow-sm p-8 text-center"
+                    style="background-color: aliceblue;">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-user-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Inscription Solo</h3>
+                    <p class="text-gray-600 mb-6">
+                        Parfait pour les artistes individuels souhaitant montrer leur talent personnel dans l'une de nos
+                        catégories.
+                    </p>
+                    <ul class="text-left mb-8">
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Accès à toutes les catégories</span>
+                        </li>
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Coaching personnalisé</span>
+                        </li>
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Temps de passage garanti</span>
+                        </li>
+                    </ul>
+                    <button type="button" data-toggle="modal" data-target=".solo"
+                        class="bg-primary hover:bg-primary/90 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors w-full">
+                        S'inscrire en Solo
+                    </button>
+                </div>
+
+                <div class="flex-1 bg-gray-50 rounded-lg shadow-sm p-8 text-center"
+                    style="background-color: aliceblue;">
+                    <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-team-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4">Inscription Groupe</h3>
+                    <p class="text-gray-600 mb-6">
+                        Idéal pour les duos, trios et groupes plus nombreux souhaitant présenter un numéro collectif.
+                    </p>
+                    <ul class="text-left mb-8">
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Jusqu'à 10 participants</span>
+                        </li>
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Espace scénique adapté</span>
+                        </li>
+                        <li class="mb-2 flex items-start">
+                            <i class="ri-check-line ri-lg text-primary mt-1 mr-2"></i>
+                            <span>Support technique renforcé</span>
+                        </li>
+                    </ul>
+                    <button type="button" data-toggle="modal" data-target=".groupe"
+                        class="bg-primary hover:bg-primary/90 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors w-full">
+                        S'inscrire en Groupe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Des inquiétudes ?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Contactez par appel ou WhatsApp les membres de l'organisation pour plus de compréhension.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button
+                    class="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                    +229 01-97-82-50-05
+                </button>
+                <button
+                    class="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                    +229 01-56-02-57-74
+                </button>
+                <button
+                    class="bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                    +229 01-62-99-23-32
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-5">
+        <div class="border-gray-800 mt-1 pt-0 text-center text-gray-500">
+            <p>© 2025 EM Dodji/Semaine du Talent</p>
+        </div>
+    </footer>
+
+    <div class="modal fade solo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-4 rounded-lg">
+                <div class="modal-body bg-white rounded-lg p-8 max-w-md w-full mx-auto relative">
+                    <div class="modal-header border-0">
+                        <h3 class="text-2xl font-semibold">Solo</h3>
+                        <button type="button" class="close text-2xl" data-dismiss="modal"
+                            aria-label="Close">&times;</button>
+                    </div><br>
+                    <form action="{% url 'inscription_solo' %}" method="POST" class="space-y-4">
+                        {% csrf_token %}
+                        <div>
+                            <label for="nom" class="block text-gray-700 mb-2">Nom & Prénoms</label>
+                            <input type="text" id="nom_prenom" name="nom_prenom" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="age" class="block text-gray-700 mb-2">Âge</label>
+                            <input type="number" id="age" name="age" required min="5" max="25"
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="contact" class="block text-gray-700 mb-2">Contact</label>
+                            <input type="text" id="contact" name="contact" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="groupe" class="block text-gray-700 mb-2">Groupe d'appartenance</label>
+                            <select id="groupe" name="groupe" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Sélectionnez votre groupe</option>
+                                <option value="Samuel">Samuel</option>
+                                <option value="MADEB">MADEB</option>
+                                <option value="Légion de Marie">Légion de Marie</option>
+                                <option value="Maman Chérie">Maman Chérie</option>
+                                <option value="Lecteurs Juniors">Lecteurs Juniors</option>
+                                <option value="Chorale des Enfants">Chorale des Enfants</option>
+                                <option value="Scout">Scout</option>
+                                <option value="Autre">Autre</option>
+                                <option value="Aucun">Aucun</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="categorie" class="block text-gray-700 mb-2">Catégorie de compétition</label>
+                            <select id="categorie" name="categorie" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="A Capella">A Capella</option>
+                                <option value="Epelle-Moi!">Epelle-Moi!</option>
+                                <option value="Dessin">Dessin</option>
+                                <option value="Question Pour un Champion">Question Pour un Champion</option>
+                                <option value="Miss & Mister">Miss & Mister</option>
+                                <option value="Couture">Couture</option>
+                                <option value="Cuisine">Cuisine</option>
+                                <option value="Art Oratoire">Art Oratoire</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" style="background-color: green;"
+                            class="w-full bg-primary hover:bg-primary/90 text-white px-1 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                            Envoyer
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade groupe" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content p-4 rounded-lg">
+                <div class="modal-body bg-white rounded-lg p-8 max-w-md w-full mx-auto relative">
+                    <div class="modal-header border-0">
+                        <h3 class="text-2xl font-semibold">Groupe</h3>
+                        <button type="button" class="close text-2xl" data-dismiss="modal"
+                            aria-label="Close">&times;</button>
+                    </div><br>
+                    <form action="{% url 'inscription_groupe' %}" method="POST" class="space-y-4">
+                        {% csrf_token %}
+                        <div>
+                            <label for="capitaine" class="block text-gray-700 mb-2">Nom & Prénoms du
+                                capitaine</label>
+                            <input type="text" id="capitaine" name="capitaine" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="equipe" class="block text-gray-700 mb-2">Nom de l'équipe</label>
+                            <input type="text" id="nom_equipe" name="nom_equipe" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="contact_groupe" class="block text-gray-700 mb-2">Contact</label>
+                            <input type="text" id="contact" name="contact" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="effectif" class="block text-gray-700 mb-2">Effectif du groupe</label>
+                            <input type="number" id="effectif" name="effectif" required min="2" max="10"
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div>
+                            <label for="categorie_groupe" class="block text-gray-700 mb-2">Catégorie de
+                                compétition</label>
+                            <select id="categorie" name="categorie" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option value="">Sélectionnez une catégorie</option>
+                                <option value="Théâtre">Théâtre</option>
+                                <option value="Danse">Danse</option>
+                            </select>
+                        </div>
+                        <button type="submit" style="background-color: green;"
+                            class="w-full bg-primary hover:bg-primary/90 text-white px-1 py-3 !rounded-button whitespace-nowrap font-medium transition-colors">
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            let alerts = document.querySelectorAll('.alert-fill'); // Sélectionne les alertes par leur classe
+            alerts.forEach(function(alert) {
+                alert.style.display = 'none';
+            });
+        }, 5000);       
+        document.addEventListener('DOMContentLoaded', function () {
+            // Gallery modal functionality
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            const galleryImages = document.querySelectorAll('.gallery-image img');
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function () {
+                    modal.style.display = 'flex';
+                    modalImg.src = this.src;
+                });
+            });
+            closeBtn.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            // Registration forms functionality
+            const soloModal = document.getElementById('soloModal');
+            const groupModal = document.getElementById('groupModal');
+            const soloForm = document.getElementById('soloForm');
+            const groupForm = document.getElementById('groupForm');
+            function openSoloModal() {
+                soloModal.style.display = 'flex';
+            }
+            function closeSoloModal() {
+                soloModal.style.display = 'none';
+            }
+            function openGroupModal() {
+                groupModal.style.display = 'flex';
+            }
+            function closeGroupModal() {
+                groupModal.style.display = 'none';
+            }
+            window.addEventListener('click', function (event) {
+                if (event.target === soloModal) {
+                    closeSoloModal();
+                }
+                if (event.target === groupModal) {
+                    closeGroupModal();
+                }
+            });
+            soloForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(soloForm);
+                const data = Object.fromEntries(formData);
+                console.log('Solo registration data:', data);
+                closeSoloModal();
+                showSuccessMessage('Inscription solo envoyée avec succès !');
+                soloForm.reset();
+            });
+            groupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(groupForm);
+                const data = Object.fromEntries(formData);
+                console.log('Group registration data:', data);
+                closeGroupModal();
+                showSuccessMessage('Inscription groupe envoyée avec succès !');
+                groupForm.reset();
+            });
+            function showSuccessMessage(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
+                successDiv.textContent = message;
+                document.body.appendChild(successDiv);
+                setTimeout(() => {
+                    successDiv.remove();
+                }, 3000);
+            }
+        });
+    </script>
+
+    <script src="/static/js/vendor.min.js"></script>
+
+</body>
+
+</html>
