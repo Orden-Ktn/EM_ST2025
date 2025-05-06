@@ -68,7 +68,6 @@ DATABASES = {
 }
 
 SITE_URL = 'http://127.0.0.1:8000'
-LOGIN_URL = 'login_view'
 AUTH_USER_MODEL = 'app.CustomUser'
 TIME_ZONE = 'Africa/Lagos'
 USE_TZ = True
@@ -121,3 +120,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# 3600 secondes = 1 heure
+SESSION_COOKIE_AGE = 3600
+
+LOGIN_URL = 'login_view'
+
+# Expire à la fermeture du navigateur (optionnel mais recommandé)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Ne prolonge pas la session automatiquement à chaque requête
+SESSION_SAVE_EVERY_REQUEST = False
